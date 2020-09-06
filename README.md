@@ -1,23 +1,12 @@
-# テーブル設計
+# テーブル設計(README.mdは仕様書、掲示板みたいなもの。)
 
 ## users テーブル
 
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| nickname | string | null: false |
-| email    | string | null: false |
-| password | string | null: false |
-
-### Association
-
-- has_one :profile
-- has_many :item
-- has_many :purchase
-
-## profiles テーブル
-
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
+| nickname        | string     | null: false                    |
+| email           | string     | null: false                    |
+| password        | string     | null: false                    |
 | last_name       | string     | null: false                    |
 | first_name      | string     | null: false                    |
 | last_name_kana  | string     | null: false                    |
@@ -25,17 +14,22 @@
 | birth_year      | integer    | null: false                    |
 | birth_month     | integer    | null: false                    |
 | birth_date      | integer    | null: false                    |
-| user_id         | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
+- has_many :item
+- has_many :purchase
+
+## profiles テーブル
+## profilesテーブルの内容は「user」のエンティティの「属性」であると思われるので、usersテーブルのカラム名とするのが適切かと思われます！！
+
+
 
 ## items テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| user_id       | references | null: false, foreign_key: true |
+| user          | references | null: false, foreign_key: true |
 | name          | string     | null: false                    |
 | introduction  | text       | null: false                    |
 | category      | integer    | null: false                    |
@@ -44,32 +38,22 @@
 | prefecture    | integer    | null: false                    |
 | handling_time | integer    | null: false                    |
 | price         | integer    | null: false                    |
-| image_id      | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_many :image
 - has_one :purchase
 
 ## images テーブル
-
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| image   | string     | null: false                    |
-| item_id | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :item
+## こちらのテーブルですが、今回の実装では商品出品の画像投稿において「active_storage」を使用するため、設計の段階から削除しておきましょう。（理由はactive_storage導入時に自動でテーブルなどが生成されるからです）
 
 ## purchases テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| item_id | references | null: false, foreign_key: true |
-| user_id | references | null: false, foreign_key: true |
-
+| item    | references | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
+## references型であるなら、カラム名はそれぞれ「user」「item」です！！
 ### Association
 
 - belongs_to :item
@@ -85,9 +69,9 @@
 | city          | string     | null: false                    |
 | street_number | string     | null: false                    |
 | building_name | string     | default: ""                    |
-| phone_number  | integer    | null: false                    |
-| purchase_id   | references | null: false, foreign_key: true |
-
+| phone_number  | string     | null: false                    |
+| purchase      | references | null: false, foreign_key: true |
+## 電話番号のように0から始まる文字は数字としてしまうと0落ちと言われる先頭の0が消える現象が起きる可能性がありますので、stringにした方が無難です！！
 ### Association
 
 - belongs_to :purchase
