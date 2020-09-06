@@ -11,14 +11,15 @@
 | first_name      | string     | null: false                    |
 | last_name_kana  | string     | null: false                    |
 | first_name_kana | string     | null: false                    |
-| birth_year      | integer    | null: false                    |
-| birth_month     | integer    | null: false                    |
-| birth_date      | integer    | null: false                    |
+| birth_date      | date       | null: false                    |
+## 14-16行目の誕生日に関するカラムですが、年、月、日を1つで指定して取得する（カラムが一つで済む）実装方法（date型）があります。また、今回のアプリで用意されているビューでは、ひとまとめで日付を実装するようになっているため、簡便化のためにもカラムが一つで済む実装方法を使用していただければと思います。「rails date型」と調べてみると、参考サイトが見つけられると思いますので、一度調べてみるといいと思います。
 
 ### Association
 
-- has_many :item
-- has_many :purchase
+- has_many :items
+- has_many :purchases
+
+## has_manyですので、:itemと:purchaseは複数形にしましょう。
 
 ## profiles テーブル
 ## profilesテーブルの内容は「user」のエンティティの「属性」であると思われるので、usersテーブルのカラム名とするのが適切かと思われます！！
