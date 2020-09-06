@@ -1,4 +1,5 @@
 # テーブル設計(README.mdは仕様書、掲示板みたいなもの。)
+## 「こちら後々のエラーの原因となってしまう可能性のあるため指摘させていただきます。active hashの導入時のカラム名は「_id」を語尾につけるかと思いますのでprefecture_idなどとカラム名を変更しましょう！！」
 
 ## users テーブル
 
@@ -11,7 +12,7 @@
 | first_name      | string     | null: false                    |
 | last_name_kana  | string     | null: false                    |
 | first_name_kana | string     | null: false                    |
-| birth_date      | date       | null: false                    |
+| birth_date_id   | date       | null: false                    |
 ## 14-16行目の誕生日に関するカラムですが、年、月、日を1つで指定して取得する（カラムが一つで済む）実装方法（date型）があります。また、今回のアプリで用意されているビューでは、ひとまとめで日付を実装するようになっているため、簡便化のためにもカラムが一つで済む実装方法を使用していただければと思います。「rails date型」と調べてみると、参考サイトが見つけられると思いますので、一度調べてみるといいと思います。
 
 ### Association
@@ -28,17 +29,17 @@
 
 ## items テーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| user          | references | null: false, foreign_key: true |
-| name          | string     | null: false                    |
-| introduction  | text       | null: false                    |
-| category      | integer    | null: false                    |
-| condition     | integer    | null: false                    |
-| postage_payer | integer    | null: false                    |
-| prefecture    | integer    | null: false                    |
-| handling_time | integer    | null: false                    |
-| price         | integer    | null: false                    |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| user             | references | null: false, foreign_key: true |
+| name             | string     | null: false                    |
+| description      | text       | null: false                    |
+| category_id      | integer    | null: false                    |
+| condition_id     | integer    | null: false                    |
+| postage_payer_id | integer    | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| handling_time_id | integer    | null: false                    |
+| price            | integer    | null: false                    |
 
 ### Association
 
@@ -66,7 +67,7 @@
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | zip_code      | string     | null: false                    |
-| prefecture    | integer    | null: false                    |
+| prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
 | street_number | string     | null: false                    |
 | building_name | string     | default: ""                    |
