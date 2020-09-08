@@ -4,15 +4,22 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  FULL_WID_CHAR = /\A[ぁ-んァ-ン一-龥]/
+  ERROR_WID = "Full-width characters"
+  FULL_WID_KANA = /\A[ァ-ヶー－]+\z/
+  ERROR_WID_KANA = "Full-width katakana characters"
+
+  
+
   with_options presence: true do
     validates :nickname
-    validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "Full-width characters"}
-    validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "Full-width characters"}
-    validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: "Full-width katakana characters"}
-    validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: "Full-width katakana characters"}
+    validates :last_name, format: { with: FULL_WID_CHAR, message: ERROR_WID }
+    validates :first_name, format: { with: FULL_WID_CHAR, message: ERROR_WID }
+    validates :last_name_kana, format: { with: FULL_WID_KANA, message: ERROR_WID_KANA}
+    validates :first_name_kana, format: { with: FULL_WID_KANA, message: ERROR_WID_KANA}
     validates :birth_date
   end
 
-    has_many :items
+  has_many :items
   
 end
