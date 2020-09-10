@@ -5,11 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   FULL_WID_CHAR = /\A[ぁ-んァ-ン一-龥]/
-  ERROR_WID = "Full-width characters"
+  ERROR_WID = 'Full-width characters'
   FULL_WID_KANA = /\A[ァ-ヶー－]+\z/
-  ERROR_WID_KANA = "Full-width katakana characters"
-
-  
+  ERROR_WID_KANA = 'Full-width katakana characters'
 
   with_options presence: true do
     validates :nickname
@@ -21,5 +19,4 @@ class User < ApplicationRecord
   end
 
   has_many :items
-  
 end
