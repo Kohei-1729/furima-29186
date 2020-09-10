@@ -31,13 +31,28 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Category Select")
     end
+    it 'カテゴリー情報の選択肢の中で、初期値を選択した場合出品できない' do
+      @item.category_id = 0
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category Select")
+    end
     it '商品の状態についての情報がなければ出品登録できない' do
       @item.condition_id = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Condition Info can't be blank")
     end
+    it '商品の状態についての選択肢の中で、初期値を選択した場合出品できない' do
+      @item.condition_id = 0
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Condition Info can't be blank")
+    end
     it '配送料の負担についての情報がなければ出品登録できない' do
-      @item.postage_payer = nil
+      @item.postage_payer_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Postage payer  and Shipping fee status Select")
+    end
+    it '配送料の負担についての選択肢の中で、初期値を選択した場合出品できない' do
+      @item.postage_payer_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include("Postage payer  and Shipping fee status Select")
     end
@@ -46,8 +61,18 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Prefecture Select")
     end
+    it '発送元の地域についての選択肢の中で、初期値を選択した場合出品できない' do
+      @item.prefecture_id = 0
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Prefecture Select")
+    end
     it '発送までの日数についての情報がなければ出品登録できない' do
       @item.handling_time_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Handling time Select")
+    end
+    it '発送までの日数についての選択肢の中で、初期値を選択した場合出品できない' do
+      @item.handling_time_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include("Handling time Select")
     end
@@ -55,6 +80,21 @@ RSpec.describe Item, type: :model do
       @item.price = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Price can't be blank")
+    end
+    it '販売価格が、¥300未満であれば出品登録できない' do
+      @item.price = 299
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price Out of setting range")
+    end
+    it '販売価格が、¥9,999,999よりも上であれば出品登録できない' do
+      @item.price = 10000000
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price Out of setting range")
+    end
+    it '販売価格の入力は半角数字でなければ出品登録できない' do
+      @item.price = "５００"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price Out of setting range")
     end
   end
 end
