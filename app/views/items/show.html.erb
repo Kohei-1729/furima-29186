@@ -4,12 +4,12 @@
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
-      <%= @name %>
+      <%= @item.name %>
     </h2>
     <div class='item-img-content'>
-      <%= image_tag @image ,class:"item-box-img" %>
+      <%= image_tag @item.image ,class:"item-box-img" %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <% if false %>
+      <% if @item.purchase.present? %>
       <div class='sold-out'>
         <span>Sold Out!!</span>
       </div>
@@ -19,7 +19,7 @@
     <div class="item-price-box">
       <span class="item-price">
         ¥
-        <%= @price %>
+        <%= @item.price %>
       </span>
       <span class="item-postage">
         (税込) 送料込み
@@ -40,33 +40,33 @@
     <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
     <div class="item-explain-box">
-      <span><%= @description %></span>
+      <span><%= @item.description %></span>
     </div>
     <table class="detail-table">
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= @nickname %></td>
+          <td class="detail-value"><%= @item.user.nickname %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= @category %></td>
+          <td class="detail-value"><%= @item.category.name %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= @condition %></td>
+          <td class="detail-value"><%= @item.condition.name %></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= @postage_payer %></td>
+          <td class="detail-value"><%= @item.postage_payer.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= @prefecture %></td>
+          <td class="detail-value"><%= @item.prefecture.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= @handling_time %></td>
+          <td class="detail-value"><%= @item.handling_time.name %></td>
         </tr>
       </tbody>
     </table>
