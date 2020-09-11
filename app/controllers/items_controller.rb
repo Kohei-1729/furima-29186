@@ -17,8 +17,18 @@ class ItemsController < ApplicationController
   end
 
   def show
-    #item = Item.find(params[:id])
-    #@name = item.name
+    item = Item.find(params[:id])
+    @name = item.name
+    @image = item.image
+    @price = item.price
+    @description = item.description
+    @nickname = item.user.nickname
+    @category = item.category.name
+    @condition = item.condition.name
+    @postage_payer = item.postage_payer.name
+    @prefecture = item.prefecture.name
+    @handling_time = item.handling_time.name
+    
   end
 
   def destroy
