@@ -17,8 +17,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    #item = Item.find(params[:id])
-    #@name = item.name
+    @item = Item.find(params[:id])   
   end
 
   def destroy
