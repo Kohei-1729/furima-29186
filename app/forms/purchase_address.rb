@@ -7,7 +7,6 @@ class PurchaseAddress
   with_options presence: true do
     validates :zip_code
     validates :prefecture_id
-    validates :city
     validates :street_number
     validates :phone_number
     validates :token
@@ -19,9 +18,7 @@ class PurchaseAddress
   validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "can't be blank"}
 
   def save
-    # purchaseの情報を保存し、「purchase」という変数に入れている
     purchase = Purchase.create(item_id: item_id, user_id: user_id)
-    # addressの情報を保存
-    Address.create(zip_code: zip_code, prefecture_id: prefecture_id, city: city, street_number: street_number, building_name: building_name, phone_number: phone.number, purchase_id: purchase.id)
+    Address.create(zip_code: zip_code, prefecture_id: prefecture_id, city: city, street_number: street_number, building_name: building_name, phone_number: phone_number, purchase_id: purchase.id)
   end
 end
