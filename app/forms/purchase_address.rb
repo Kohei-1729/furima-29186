@@ -8,7 +8,6 @@ class PurchaseAddress
     validates :zip_code
     validates :prefecture_id
     validates :street_number
-    validates :phone_number
     validates :token
   end
 
