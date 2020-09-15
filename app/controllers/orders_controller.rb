@@ -1,5 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :block_exhibitor
+  before_action :passby_soldout
+  
+
   def index
     @address = PurchaseAddress.new
     @item = Item.find(params[:item_id])
@@ -32,5 +36,19 @@ class OrdersController < ApplicationController
       card: address_params[:token], 
       currency:'jpy' 
     )
+  end
+
+  def block_exhibitor
+    @item = Item.find(params[:item_id])
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    end
+  end
+
+  def passby_soldout
+    @item = Item.find(params[:item_id])
+    if @item.id == purchase.item_id
+      redirect_to root_path
+    end
   end
 end
