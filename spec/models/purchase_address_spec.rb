@@ -19,6 +19,11 @@ RSpec.describe PurchaseAddress, type: :model do
       @purchase_address.valid?
       expect(@purchase_address.errors.full_messages).to include("Zip code Input correctly")
     end
+    it '郵便番号が半角のハイフンを含んだ正しい形式(3桁-4桁)でないと保存できないこと' do
+      @purchase_address.zip_code = '12-3234'
+      @purchase_address.valid?
+      expect(@purchase_address.errors.full_messages).to include("Zip code Input correctly")
+    end
     it '都道府県についての選択肢の中で、初期値を選択した場合出品できない' do
       @purchase_address.prefecture_id = 0
       @purchase_address.valid?
