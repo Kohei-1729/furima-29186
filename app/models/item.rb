@@ -23,16 +23,15 @@ class Item < ApplicationRecord
     validates :price
   end
 
-  with_options numericality: { other_than: 0, message: "Select" } do
+  with_options numericality: { other_than: 0, message: "を選択してください" } do
     validates :category_id
     validates :prefecture_id
     validates :handling_time_id
   end
 
-  PRICE_RANGE = "Out of setting range"
-  validates :condition_id, numericality: { other_than: 0, message: "Info can't be blank" }
-  validates :postage_payer_id, numericality: { other_than: 0, message: " and Shipping fee status Select" }
-  validates :price, numericality: { greater_than_or_equal_to: 300, message: PRICE_RANGE}
-  validates :price, numericality: { less_than: 10000000, message: PRICE_RANGE}
-  validates :price, format: { with: /\A[0-9]+\z/, message: "Half-width number" }
+  validates :condition_id, numericality: { other_than: 0, message: "を選択してください" }
+  validates :postage_payer_id, numericality: { other_than: 0, message: "を選択してください" }
+  validates :price, numericality: { greater_than_or_equal_to: 300, message: "にご注意ください（300円以上です）"}
+  validates :price, numericality: { less_than: 10000000, message: "にご注意ください（10,000,000円未満です）"}
+  validates :price, format: { with: /\A[0-9]+\z/, message: "は半角数字で入力ください" }
 end
