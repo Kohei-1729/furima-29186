@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   FULL_WID_CHAR = /\A[ぁ-んァ-ン一-龥]/
-  ERROR_WID = 'Full-width characters'
+  ERROR_WID = 'を全角で入力してください'
   FULL_WID_KANA = /\A[ァ-ヶー－]+\z/
-  ERROR_WID_KANA = 'Full-width katakana characters'
+  ERROR_WID_KANA = 'を全角カナで入力してください'
 
   with_options presence: true do
     validates :nickname
