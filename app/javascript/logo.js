@@ -11,4 +11,46 @@ function changeLogo(){
   })
 }
 
+function changingLetter(){
+  const changingLetterGreenOne = document.getElementsByClassName('reason-list-blue-text')[0]
+
+  changingLetterGreenOne.addEventListener('mouseover', function(){
+    this.setAttribute("style", "color: #cc00ff;")
+  })
+  changingLetterGreenOne.addEventListener('mouseout', function(){
+    this.setAttribute("style", "color: #3ccace;")
+  })
+
+}
+
+function changeLetters(){
+  const changeLettersOne = document.getElementById("simple")
+  const changeLettersTwo = document.getElementById("the-cheapest")
+  const changeLettersThree = document.getElementsByClassName('subtitle')[0]
+
+  changeLettersOne.addEventListener('mouseover', function(){
+    this.setAttribute("style", "color: #cc00ff;")
+  })
+  changeLettersOne.addEventListener('mouseout', function(){
+    this.setAttribute("style", "color: #3ccace;")
+  })
+
+  changeLettersTwo.addEventListener('mouseover', function(){
+    this.setAttribute("style", "color: #cc00ff;")
+  })
+  changeLettersTwo.addEventListener('mouseout', function(){
+    this.setAttribute("style", "color: #3ccace;")
+  })
+
+  changeLettersThree.addEventListener('mouseover', function(){
+    this.setAttribute("style", "color: #cc00ff;")
+  })
+  changeLettersThree.addEventListener('mouseout', function(){
+    this.setAttribute("style", "color: #3ccace;")
+  })
+}
+
+
 window.addEventListener('load', changeLogo)
+window.addEventListener('load', changingLetter)
+window.addEventListener('load', changeLetters)
