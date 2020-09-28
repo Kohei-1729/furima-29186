@@ -95,8 +95,7 @@
     <a href="#" class="change-item-btn">
       ＜ 前の商品
     </a>
-    <a href="#" class="change-item-btn">
-      後ろの商品 ＞
+    <%= link_to '後ろの商品 ＞', item_path(@item.id - 2), class:"change-item-btn" %>
     </a>
   </div>
   <a href="#" class='another-item'><%= @item.category.name %>をもっと見る</a>
