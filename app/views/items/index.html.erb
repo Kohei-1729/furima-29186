@@ -2,7 +2,7 @@
 <div class='main'>
 
   <%# 画面上部の「人生を変えるフリマアプリ」帯部分 %>
-  <div class='title-contents'>
+  <div class='title-contents', id="slide_show">
     <h2 class='service-title'>
       人生を変えるフリマアプリ
     </h2>
@@ -40,7 +40,7 @@
         <%= image_tag "furima-intro02.png", class:"list-pict" %>
         <span class='reason-list-number'>2</span>
         <h3 class='reason-list-text'>
-          <span class='reason-list-blue-text'>シンプル</span>
+          <span class='reason-list-blue-text', id="simple">シンプル</span>
           で使いやすい
         </h3>
         <p class='reason-list-description'>
@@ -52,7 +52,7 @@
         <span class='reason-list-number'>3</span>
         <h3 class='reason-list-text'>
           手数料
-          <span class='reason-list-blue-text'>業界最安</span>
+          <span class='reason-list-blue-text', id="the-cheapest">業界最安</span>
         </h3>
         <p class='reason-list-description'>
           最大3%でお得に出品&購入！
@@ -176,7 +176,7 @@
 <div class='purchase-btn'>
   <span class='purchase-btn-text'>出品する</span>
   <%= link_to new_item_path do %>
-    <%= image_tag 'GuiHub.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+    <%= image_tag 'GuiHub-white-yuri.png' , size: '185x50' ,class: "purchase-btn-icon" %>
   <% end %>
 </div>
 <%= render "shared/footer" %>
