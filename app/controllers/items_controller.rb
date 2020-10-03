@@ -39,6 +39,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def category
+    @category = Category.find(params[:category_id])
+    @items = Item.all.where(category_id: params[:category_id]).order('created_at DESC')
+  end
+
   private
 
   def item_params
