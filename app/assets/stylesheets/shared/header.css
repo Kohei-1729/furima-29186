@@ -109,3 +109,20 @@
   color: #333333;
 }
 
+.show-lists {
+  display: flex;
+  justify-content: center;
+  color: #cc00ff;
+}
+
+.pull-down-list{
+  font-size: 13px;
+  padding: 0 5px;
+  margin: 0 7px 5px 15px;
+  border-bottom: 1px solid #333333;
+  font-weight: bold;
+}
+
+.hidden{
+  display: none;
+}
