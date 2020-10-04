@@ -67,6 +67,11 @@
   color: #333333;
 }
 
+.category-list:hover {
+  color: #cc00ff;
+  font-weight: bold;
+}
+
 .brand-list {
   text-decoration: none;
   color: #333333;
@@ -103,3 +108,4 @@
   text-decoration: none;
   color: #333333;
 }
+
