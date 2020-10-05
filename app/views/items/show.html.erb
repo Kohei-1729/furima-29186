@@ -92,12 +92,18 @@
     </form>
   </div>
   <div class="links">
-    <%= link_to '＜ 前の商品', item_path(@item.next.id), class:"change-item-btn" if @item.next.present? %>
+    <% if @item.next.present? %>
+    <%= link_to '＜ 前の商品', item_path(@item.next.id), class:"change-item-btn" %>
+    <% else %>
+    <div></div>
+    <% end %>
     </a>
-    <%= link_to '後ろの商品 ＞', item_path(@item.previous.id), class:"change-item-btn" if @item.previous.present? %>
+    <% if @item.previous.present? %>
+    <%= link_to '後ろの商品 ＞', item_path(@item.previous.id), class:"change-item-btn" %>
+    <% end %>
     </a>
   </div>
-  <a href="#" class='another-item'><%= @item.category.name %>をもっと見る</a>
+  <%= link_to "#{@item.category.name}をもっと見る", category_items_path(category_id: @item.category.id), class:'another-item' %>
 </div>
 
 <%= render "shared/footer" %>

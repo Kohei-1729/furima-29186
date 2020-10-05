@@ -1,0 +1,42 @@
+<div class="my-page-contents">
+  <header class="my-page-header">
+    <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
+
+  </header>
+  <h2 class="my-list-title"><%= current_user.nickname %>さんのお気に入り商品一覧</h2>
+  <% if @items%>
+    <% @items.each do |item| %>
+      <div class="my-list-main">
+        <%= link_to item_path(item) do %>
+          <%=image_tag item.image, class: "my-list-img" %>
+          <% if item.purchase.present? %>
+          <div class='sold-out'>
+            <span>Sold Out!!</span>
+          </div>
+          <% end %>
+        <% end %>
+        <h3 class="my-list-name">
+          <%= item.name %>
+        </h3>
+        <h3 class="my-list-price">
+          <%= item.price %>円(税込み)
+        </h3>
+        <%= link_to '削除', item_path(@item), method: :delete, class:"my-list-destroy" %>
+      </div>
+    <% end %>
+  <% else %>
+  <h3>お気に入り登録した商品はありません</h3>
+  <% end %>
+
+  <footer class="my-page-footer">
+  <ul class="menu">
+    <li><a href="#">プライバシーポリシー</a></li>
+    <li><a href="#">フリマ利用規約</a></li>
+    <li><a href="#">特定商取引に関する表記</a></li>
+  </ul>
+  <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
+  <p class="inc">
+    ©︎Furima,Inc.
+  </p>
+  </footer>
+</div>
