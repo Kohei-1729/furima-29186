@@ -1,6 +1,6 @@
 lock '3.14.1'
 
-set :application, ‘furima-29186’
+set :application, 'furima-29186'
 
 set :repo_url,  'git@github.com:Kohei-1729/furima-29186.git'
 
